@@ -18,6 +18,7 @@ input)
 ###How to do it ?
 
 ###What commands should be implemented ?
+* exit (close program safely + clear all memory)
 * date
 * pwd
 * ls (+ options a l)
