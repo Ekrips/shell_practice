@@ -1,3 +1,6 @@
+##TODO##
+Tokenisation propre
+
 ###How does it work ?
 * Loads config file & applies parameters
 * Prints several infos then prints prompt
@@ -16,6 +19,15 @@ and wait for input again (or not if the command is supposed to wait for
 input)
 
 ###How to do it ?
+* Short main : loads config file (find a default location, fe ~) then launches main routine:
+   prints prompt([user@machine curr dir]$), waits for input, tokenizes it, checks if first word is a
+   known command (a known command is a C program located somewhere which performs a specific action).
+   If it's the case, fork() and the child gives the tokenized string to the program.
+* Said program will check the tokenized string for parameters and their validity. If something is wrong,
+   behaves appropriately (errno, print error, etc). If everything is okay, tries to run the program with the
+   arguments.
+* When the program ends, the child process ends properly and the father resumes at the beginning of the
+   routine.
 
 ###What commands should be implemented ?
 * exit (close program safely + clear all memory)

@@ -1,7 +1,18 @@
-all: shell
-
-shell:
-	gcc -Wall -Wextra -o shell shell.c
-
-clean:
-	rm shell
+CC = gcc
+CFLAGS = -W -Wall -Wextra
+LDFLAGS = 
+ 
+SRC = $(wildcard *.c)
+OBJ = $(SRC:.c=.o)
+OPUT = shell
+ 
+all : $(OPUT) 
+ 
+prog : $(OBJ)
+	$(CC) $(LDFLAGS) -o $@ $^
+%.o : %.c
+	$(CC) $(CFLAGS) -o $@ -c $<
+clean :
+	@rm *.o
+mrproper : clean
+	@rm $(OPUT)
